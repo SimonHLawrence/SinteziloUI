@@ -1,16 +1,17 @@
 //
 //  Styling.swift
-//  
+//  SinteziloUI
 //
 //  Created by Simon Lawrence on 19/08/2023.
+//  Copyright © 2023 Akordo Limited. All rights reserved.
 //
 
 import SwiftUI
 
 struct DisplayFonts {
 
-  static let condensed = "AvenirNextCondensed-Medium"
-  static let medium = "AvenirNext-Medium"
+  static let condensed = "AppleSDGothicNeo-Light"
+  static let medium = "AppleSDGothicNeo-Medium"
 
   static var title: Font = .custom(medium, size: 24.0, relativeTo: .title)
   static var body: Font = .custom(medium, size: 17.0, relativeTo: .body)

@@ -1,6 +1,6 @@
 //
 //  MockParameters.swift
-//  
+//  SinteziloUI
 //
 //  Created by Simon Lawrence on 17/08/2023.
 //  Copyright © 2023 Akordo Limited. All rights reserved.

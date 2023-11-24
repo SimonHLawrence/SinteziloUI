@@ -1,6 +1,6 @@
 //
 //  ParameterViewModel.swift
-//  
+//  SinteziloUI
 //
 //  Created by Simon Lawrence on 17/08/2023.
 //  Copyright © 2023 Akordo Limited. All rights reserved.
@@ -146,9 +146,6 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
         let displayValue = displayConversion.toDisplay(auValue)
         self.currentValue = displayValue
         self.editingState = .inactive
-//        #if DEBUG
-//        debugPrint("Updated UI Parameter: \(self.parameter.identifier) -> \(auValue), \(displayValue)")
-//        #endif
       }
     }
   }
