@@ -1,3 +1,3 @@
 # SinteziloUI
 
-A description of this package.
+SwiftUI knobs, rockers and parameter groups for Audio Units.
