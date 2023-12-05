@@ -16,7 +16,8 @@ extension CGRect {
 }
 
 struct ParameterCircularScale: View {
-  internal init(radius: CGFloat = 30.0, viewModel: ParameterViewModel) {
+
+  init(radius: CGFloat = 30.0, viewModel: ParameterViewModel) {
     self.viewModel = viewModel
     self.radius = radius
   }

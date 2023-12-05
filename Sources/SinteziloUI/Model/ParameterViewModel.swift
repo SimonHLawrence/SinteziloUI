@@ -9,6 +9,7 @@
 import Foundation
 import CoreAudioKit
 
+/// <#Description#>
 public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
 
   public static func == (lhs: ParameterViewModel, rhs: ParameterViewModel) -> Bool {
@@ -55,7 +56,8 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
   var pointsOfInterest: [PointOfInterest]
   var displayConversion: ParameterDisplayConversionType
 
-  @Published var currentValue: AUValue {
+  /// <#Description#>
+  @Published public var currentValue: AUValue {
     willSet {
       guard editingState != .hostUpdate else { return }
 
@@ -96,7 +98,11 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
     Int(currentValue) :
     pickerValues.firstIndex(where: { $0.parameterValue == currentValue }) ?? 0
   }
-  
+
+  /// <#Description#>
+  /// - Parameters:
+  ///   - parameter: <#parameter description#>
+  ///   - pointsOfInterest: <#pointsOfInterest description#>
   public init(parameter: AUParameter, pointsOfInterest: [AUValue]? = nil) {
 
     self.parameter = parameter

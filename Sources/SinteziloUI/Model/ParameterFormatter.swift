@@ -11,14 +11,14 @@ import CoreAudioKit
 
 struct ParameterFormatter {
 
-  static var measurementFormatter: MeasurementFormatter = {
+  private static var measurementFormatter: MeasurementFormatter = {
     let result = MeasurementFormatter()
     result.unitStyle = .short
     result.unitOptions = .naturalScale
     return result
   }()
 
-  static var millisecondFormatter: MeasurementFormatter = {
+  private static var millisecondFormatter: MeasurementFormatter = {
     let result = MeasurementFormatter()
     result.unitStyle = .short
     result.unitOptions = .providedUnit
@@ -26,7 +26,7 @@ struct ParameterFormatter {
     return result
   }()
 
-  static var secondFormatter: MeasurementFormatter = {
+  private static var secondFormatter: MeasurementFormatter = {
     let result = MeasurementFormatter()
     result.unitStyle = .short
     result.unitOptions = .naturalScale
@@ -34,14 +34,14 @@ struct ParameterFormatter {
     return result
   }()
 
-  static var percentageFormatter: NumberFormatter = {
+  private static var percentageFormatter: NumberFormatter = {
     let result = NumberFormatter()
     result.numberStyle = .percent
     result.maximumFractionDigits = 0
     return result
   }()
 
-  static var genericFormatter: NumberFormatter = {
+  private static var genericFormatter: NumberFormatter = {
     let result = NumberFormatter()
     result.maximumFractionDigits = 2
     return result
@@ -77,8 +77,11 @@ struct ParameterFormatter {
       }
       return millisecondFormatter.string(from: timeInterval)
 
+    case .BPM:
+      let valueString = genericFormatter.string(from: NSNumber(value: value)) ?? "0"
+      return "\(valueString) BPM"
+
     case .midiNoteNumber:
-      // TODO: Localize
       let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
       let noteNumber = Int(value)
       let note = noteNumber % 12
