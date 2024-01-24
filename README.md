@@ -49,6 +49,6 @@ To provide scale labels for parameters, pass an array of points of interest whic
 
 ## ParameterGroupViewModel
 
-For each group of parameters, either create a view model explicitly for each paramater, or use the 
+For each group of parameters, either create a view model explicitly for each parameter, or use the 
 convenience ininitializer to create these automatically. In the latter case a dictionary of parameter 
 addresses and corresponding arrays of points of interest can be provided for scale labelling.
