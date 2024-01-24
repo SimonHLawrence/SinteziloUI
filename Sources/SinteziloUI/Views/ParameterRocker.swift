@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+/// A control representing a toggle between two values for an ``AUParameter``.
 public struct ParameterRocker: View {
 
   public init(viewModel: ParameterViewModel) {

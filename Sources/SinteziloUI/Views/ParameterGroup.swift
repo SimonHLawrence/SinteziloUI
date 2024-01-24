@@ -8,9 +8,10 @@
 
 import SwiftUI
 
+/// A view representing a named group of parameter controls.
 public struct ParameterGroup: View {
 
-  public var viewModel: ParameterGroupViewModel
+  var viewModel: ParameterGroupViewModel
 
   public var body: some View {
     VStack(alignment: .leading, spacing: 4.0) {
@@ -81,14 +82,14 @@ struct ParameterGroup_Previews: PreviewProvider {
     let oscillatorViewModel = ParameterGroupViewModel(name: "Oscillators",
                                             parameters: parameters)
     TabView {
+      ParameterGroup(viewModel: oscillatorViewModel).tabItem {
+        Label(oscillatorViewModel.title, systemImage: "badge.plus.radiowaves.right")
+      }
       ParameterGroup(viewModel: filterViewModel).tabItem {
         Label(filterViewModel.title, systemImage: "chart.line.downtrend.xyaxis")
       }
       ParameterGroup(viewModel: envelopeViewModel).tabItem {
         Label(envelopeViewModel.title, systemImage: "chart.bar")
-      }
-      ParameterGroup(viewModel: oscillatorViewModel).tabItem {
-        Label(oscillatorViewModel.title, systemImage: "badge.plus.radiowaves.right")
       }
     }
   }

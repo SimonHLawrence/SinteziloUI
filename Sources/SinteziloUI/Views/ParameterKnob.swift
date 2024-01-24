@@ -17,6 +17,7 @@ extension Array where Element: (Comparable & SignedNumeric) {
   }
 }
 
+/// A control representing a continuous or stepped knob for an ``AUParameter``.
 public struct ParameterKnob: View {
 
   static let angleRangeProportion = 0.80
@@ -32,7 +33,7 @@ public struct ParameterKnob: View {
 
   @State var angle: Double = 0
   @State var dragLocation: CGPoint
-  @ObservedObject public var viewModel: ParameterViewModel
+  @ObservedObject var viewModel: ParameterViewModel
 
   public init(viewModel: ParameterViewModel) {
     minAngle = 0.0

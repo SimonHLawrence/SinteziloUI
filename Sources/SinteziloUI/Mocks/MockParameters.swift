@@ -9,6 +9,7 @@
 import Foundation
 import CoreAudioKit
 
+/// Mock to enable prototyping of UI
 final class MockParameter: AUParameter {
 
   init(address: AUParameterAddress,
@@ -67,6 +68,7 @@ final class MockParameter: AUParameter {
   }
 }
 
+/// Some mock instances for UI development.
 struct MockParameters {
 
   static var cutoff = MockParameter(address: 1,

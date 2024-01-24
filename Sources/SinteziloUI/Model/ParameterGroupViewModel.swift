@@ -9,7 +9,7 @@
 import Foundation
 import CoreAudioKit
 
-/// <#Description#>
+/// View model representing a named group of parameters.
 public class ParameterGroupViewModel: ObservableObject, Identifiable, Hashable {
 
   var identifier = UUID()
@@ -24,20 +24,22 @@ public class ParameterGroupViewModel: ObservableObject, Identifiable, Hashable {
     hasher.combine(identifier)
   }
 
-  /// <#Description#>
+  /// Convenience initializer that will first create an array of ``ParameterViewModel`` instances
+  /// and then initialize the view model with those.
   /// - Parameters:
-  ///   - name: <#name description#>
-  ///   - parameters: <#parameters description#>
-  public convenience init(name: String, parameters: [AUParameter]) {
+  ///   - name: the name of the parameter group.
+  ///   - parameters: an array of parameters for the group.
+  ///   - pointsOfInterest: a dictionary associating parameter addresses with any associated points of interest for scale marking.
+  public convenience init(name: String, parameters: [AUParameter], pointsOfInterest: [AUParameterAddress: [AUValue]] = [:]) {
 
-    let mappedParameters = parameters.map { ParameterViewModel(parameter: $0) }
+    let mappedParameters = parameters.map { ParameterViewModel(parameter: $0, pointsOfInterest: pointsOfInterest[$0.address]) }
     self.init(name: name, parameters: mappedParameters)
   }
 
-  /// <#Description#>
+  /// Initializer that will create a group view model for the supplied parameter view models.
   /// - Parameters:
-  ///   - name: <#name description#>
-  ///   - parameters: <#parameters description#>
+  ///   - name: the name of the parameter group.
+  ///   - parameters: an array of parameter view models for the group.
   public init(name: String, parameters: [ParameterViewModel]) {
 
     self.title = name

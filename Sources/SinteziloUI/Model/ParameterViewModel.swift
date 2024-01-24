@@ -9,7 +9,6 @@
 import Foundation
 import CoreAudioKit
 
-/// <#Description#>
 public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
 
   public static func == (lhs: ParameterViewModel, rhs: ParameterViewModel) -> Bool {
@@ -44,7 +43,9 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
     var displayValue: AUValue
   }
 
+  /// The address of the uderlying ``AUParameter``.
   public var id: UInt64 { parameter.address }
+
   var parameter: AUParameter
   var observerToken: AUParameterObserverToken?
   var editingState: EditingState = .inactive
@@ -56,7 +57,7 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
   var pointsOfInterest: [PointOfInterest]
   var displayConversion: ParameterDisplayConversionType
 
-  /// <#Description#>
+  /// The current value of the parameter.
   @Published public var currentValue: AUValue {
     willSet {
       guard editingState != .hostUpdate else { return }
@@ -99,10 +100,11 @@ public class ParameterViewModel: ObservableObject, Identifiable, Hashable {
     pickerValues.firstIndex(where: { $0.parameterValue == currentValue }) ?? 0
   }
 
-  /// <#Description#>
+  /// Initialise a view model with the supplied parameter, and optionally
+  /// a list of values considered "points of interest" for scale marking.
   /// - Parameters:
-  ///   - parameter: <#parameter description#>
-  ///   - pointsOfInterest: <#pointsOfInterest description#>
+  ///   - parameter: the parameter.
+  ///   - pointsOfInterest: points of interest, in the units of the parameter.
   public init(parameter: AUParameter, pointsOfInterest: [AUValue]? = nil) {
 
     self.parameter = parameter
