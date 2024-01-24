@@ -4,7 +4,16 @@ SwiftUI knobs, rockers and parameter groups for Audio Unit parameters.
 
 ![image](Images/SinteziloUI.png)
 
+| View | View Model | Description |
+| --- | --- | --- |
+| ``ParameterKnob`` | ``ParameterViewModel`` | A knob representing a discrete or continuous parameter. |
+| ``ParameterRocker`` | ``ParameterViewModel`` | A toggle switch representing a parameter with two values. |
+| ``ParameterGroup`` | ``ParameterGroupViewModel`` | A named group of parameter controls. |
+
 ## ParameterViewModel
+
+For each ``AUParameter``, create a corresponding ``ParameterViewModel``. The view model
+will determine an apppropriate display representation for the parameter based on the following flags.
 
 For discrete rather than continuous values, the following flag will be respected:
 
@@ -36,10 +45,10 @@ The following units are explicitly handled:
 
 Other units whill be presented generically with up to two decimal places.
     
-## ParameterKnob
-
-## ParameterRocker
+To provide scale labels for parameters, pass an array of points of interest which are the value units that should be used as scale labels. These will automatically be converted to display units.
 
 ## ParameterGroupViewModel
 
-## ParameterGroup
+For each group of parameters, either create a view model explicitly for each paramater, or use the 
+convenience ininitializer to create these automatically. In the latter case a dictionary of parameter 
+addresses and corresponding arrays of points of interest can be provided for scale labelling.
