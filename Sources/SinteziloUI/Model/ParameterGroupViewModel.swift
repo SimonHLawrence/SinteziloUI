@@ -12,9 +12,18 @@ import CoreAudioKit
 /// View model representing a named group of parameters.
 public class ParameterGroupViewModel: ObservableObject, Identifiable, Hashable {
 
+  /// The display type for the group.
+  public enum DisplayType: Int {
+    // Shown inline with other controls
+    case inline
+    // Shown as a button toggling a popover
+    case popover
+  }
+
   var identifier = UUID()
   var title: String
   var parameters: [ParameterViewModel]
+  public let displayType: DisplayType
 
   public static func == (lhs: ParameterGroupViewModel, rhs: ParameterGroupViewModel) -> Bool {
     lhs.identifier == rhs.identifier
@@ -30,20 +39,21 @@ public class ParameterGroupViewModel: ObservableObject, Identifiable, Hashable {
   ///   - name: the name of the parameter group.
   ///   - parameters: an array of parameters for the group.
   ///   - pointsOfInterest: a dictionary associating parameter addresses with any associated points of interest for scale marking.
-  public convenience init(name: String, parameters: [AUParameter], pointsOfInterest: [AUParameterAddress: [AUValue]] = [:]) {
+  public convenience init(name: String, parameters: [AUParameter], displayType: DisplayType = .inline, pointsOfInterest: [AUParameterAddress: [AUValue]] = [:]) {
 
     let mappedParameters = parameters.map { ParameterViewModel(parameter: $0, pointsOfInterest: pointsOfInterest[$0.address]) }
-    self.init(name: name, parameters: mappedParameters)
+    self.init(name: name, displayType: displayType, parameters: mappedParameters)
   }
 
   /// Initializer that will create a group view model for the supplied parameter view models.
   /// - Parameters:
   ///   - name: the name of the parameter group.
   ///   - parameters: an array of parameter view models for the group.
-  public init(name: String, parameters: [ParameterViewModel]) {
+  public init(name: String, displayType: DisplayType = .inline, parameters: [ParameterViewModel]) {
 
     self.title = name
     self.parameters = parameters
+    self.displayType = displayType
   }
 }
 
